@@ -1,7 +1,7 @@
 // Optional consumer check. No model request or account credentials are needed.
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
-import { copyFile, mkdir, mkdtemp, readFile, realpath, rm } from 'node:fs/promises';
+import { copyFile, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import readline from 'node:readline';
@@ -10,7 +10,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const source = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dependencies = path.resolve(process.argv[2] ?? '.qa-agent-deps/node_modules');
 const workspace = await mkdtemp(path.join(tmpdir(), 'douyin-agent-qa-'));
-const skill = path.join(workspace, '.agents', 'skills', 'douyin-downloader');
+const skill = path.join(workspace, '.agents', 'skills', 'douyin-downloader-jw');
 const manifest = path.join(skill, 'SKILL.md');
 
 async function codexDiscovery() {
@@ -43,7 +43,9 @@ async function codexDiscovery() {
         capabilities: { experimentalApi: true },
       } });
     });
-    const candidates = response.data.flatMap(row => row.skills).filter(row => row.name === 'douyin-downloader');
+    const catalog = response.data.flatMap(row => row.skills);
+    assert.ok(catalog.some(row => row.name === 'douyin-downloader'), 'Legacy skill fixture missing');
+    const candidates = catalog.filter(row => row.name === 'douyin-downloader-jw');
     const expected = await realpath(manifest);
     let found = false;
     for (const row of candidates) {
@@ -74,7 +76,8 @@ async function deepseekDiscovery() {
   try {
     const observation = await provider.list({ cwd: workspace });
     const candidates = Array.isArray(observation) ? observation : observation.candidates;
-    const candidate = candidates.find(row => row.name === 'douyin-downloader');
+    assert.ok(candidates.some(row => row.name === 'douyin-downloader'), 'Legacy skill fixture missing');
+    const candidate = candidates.find(row => row.name === 'douyin-downloader-jw');
     assert.ok(candidate, 'DeepSeek did not discover the project .agents skill');
     const loaded = await provider.get(candidate, { cwd: workspace });
     assert.equal(loaded.invocation.modelInvocable, true);
@@ -98,7 +101,10 @@ try {
     await mkdir(path.dirname(path.join(skill, name)), { recursive: true });
     await copyFile(path.join(source, name), path.join(skill, name));
   }
-  console.log(JSON.stringify({ platform: process.platform,
+  const legacy = path.join(workspace, '.agents', 'skills', 'other-downloader');
+  await mkdir(legacy, { recursive: true });
+  await writeFile(path.join(legacy, 'SKILL.md'), '---\nname: douyin-downloader\ndescription: Independent legacy downloader fixture.\n---\nLegacy tool without a task center.\n');
+  console.log(JSON.stringify({ platform: process.platform, legacyNameCoexists: true,
     checks: [await codexDiscovery(), await deepseekDiscovery()] }, null, 2));
 } finally {
   await rm(workspace, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });

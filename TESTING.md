@@ -4,7 +4,7 @@
 
 ## GitHub Actions
 
-[验证运行 38995131089](https://github.com/jevons1314-creator/douyin-downloader/actions/runs/38995131089)：提交 `532ac87`，六个任务均为 success。
+[验证运行 38995131089](https://github.com/jevons1314-creator/douyin-downloader-jw/actions/runs/38995131089)：提交 `532ac87`，六个任务均为 success。
 
 | 执行器 | Python / 检查 | 结果 |
 | --- | --- | --- |

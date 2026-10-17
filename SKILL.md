@@ -1,9 +1,13 @@
 ---
-name: douyin-downloader
+name: douyin-downloader-jw
 description: 在 Windows 或 macOS 下载抖音公开视频；接收分享文案、短链接、作品链接或 CSV，后台解析并保存 MP4，通过本机任务中心管理批量进度、暂停和续传。
+metadata:
+  source: "https://github.com/jevons1314-creator/douyin-downloader-jw"
 ---
 
-# 抖音下载器
+# 抖音下载器 JW
+
+来源：<https://github.com/jevons1314-creator/douyin-downloader-jw>。显式调用使用 `douyin-downloader-jw`；安装时核对完整仓库地址，不按通用名称选择其他仓库。
 
 ## 执行
 

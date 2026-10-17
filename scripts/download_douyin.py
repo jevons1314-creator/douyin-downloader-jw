@@ -440,7 +440,7 @@ def ensure_dashboard() -> None:
                 time.sleep(.1)
         else:
             raise RuntimeError("任务中心启动超时")
-    if health.get("service") != "douyin-downloader":
+    if health.get("service") != "douyin-downloader-jw":
         raise RuntimeError("9180 端口被其他服务占用，停止提交任务")
 
 

@@ -1,4 +1,4 @@
-# 抖音下载器 · douyin-downloader
+# 抖音下载器 JW · douyin-downloader-jw
 
 供 Codex 和 DeepSeek Harness 使用的抖音公开视频下载 Skill。支持 Windows、macOS，接收分享文案、短链接、标准作品链接和 CSV；标题与媒体地址在任务队列中解析。
 
@@ -6,18 +6,20 @@
 
 ## 安装与发现
 
-GitHub：[jevons1314-creator/douyin-downloader](https://github.com/jevons1314-creator/douyin-downloader)。
+GitHub：[jevons1314-creator/douyin-downloader-jw](https://github.com/jevons1314-creator/douyin-downloader-jw)。
 
-解压后复制整个 `douyin-downloader` 文件夹，保持 `SKILL.md` 与脚本目录的相对结构。推荐只安装一份到两个 agent 都支持的共享目录：
+请按上面的完整仓库地址安装；仅搜索“抖音下载器”或 `douyin-downloader` 可能选到其他项目。安装后核对 `SKILL.md` 的 `name: douyin-downloader-jw` 及来源地址，并确认存在 `scripts/start_dashboard.py`、`dashboard/server.py`、`dashboard/index.html`。
+
+解压后复制整个 `douyin-downloader-jw` 文件夹，保持 `SKILL.md` 与脚本目录的相对结构。推荐只安装一份到两个 agent 都支持的共享目录：
 
 | 系统 | Codex 与 DeepSeek Harness 共用目录 |
 | --- | --- |
-| macOS | `~/.agents/skills/douyin-downloader/` |
-| Windows | `%USERPROFILE%\.agents\skills\douyin-downloader\` |
+| macOS | `~/.agents/skills/douyin-downloader-jw/` |
+| Windows | `%USERPROFILE%\.agents\skills\douyin-downloader-jw\` |
 
-也可以在项目的 `.agents/skills/douyin-downloader/` 安装。DeepSeek 的专用用户目录为 `~/.dsh/skills/`（Windows 为 `%USERPROFILE%\.dsh\skills\`，如设置了 `DSH_HOME`，以该位置为准）。已有 Codex 版本也可能从 `~/.codex/skills` 读取；无需为两个 agent 重复复制同名 Skill。
+也可以在项目的 `.agents/skills/douyin-downloader-jw/` 安装。DeepSeek 的专用用户目录为 `~/.dsh/skills/`（Windows 为 `%USERPROFILE%\.dsh\skills\`，如设置了 `DSH_HOME`，以该位置为准）。已有 Codex 版本也可能从 `~/.codex/skills` 读取；无需为两个 agent 重复复制同名 Skill。
 
-发现规则：[Codex 官方文档](https://learn.chatgpt.com/docs/build-skills)、[DeepSeek Harness 官方文档](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.md)。Codex 可用 `$douyin-downloader` 显式调用；DeepSeek Harness 可用 `/douyin-downloader`，然后附上分享文案及保存目录。若列表没有刷新，重新打开对应 agent。
+发现规则：[Codex 官方文档](https://learn.chatgpt.com/docs/build-skills)、[DeepSeek Harness 官方文档](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/skills.md)。Codex 可用 `$douyin-downloader-jw` 显式调用；DeepSeek Harness 可用 `/douyin-downloader-jw`，然后附上分享文案及保存目录。若列表没有刷新，重新打开对应 agent。
 
 DeepSeek 的预设需要启用 Skill 发现与加载能力；标准模式提供这些能力。桌面 agent 若提供工作区运行时查询，可直接使用它返回的 Python 绝对路径。
 

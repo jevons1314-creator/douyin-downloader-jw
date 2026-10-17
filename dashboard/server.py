@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local, persistent task queue for douyin-downloader. Standard library only."""
+"""Local, persistent task queue for douyin-downloader-jw. Standard library only."""
 import copy
 import csv
 import http.client
@@ -381,7 +381,7 @@ class TaskStore:
         with self.lock:
             if self.refresh_external():
                 self.save()
-            return {"service": "douyin-downloader", "parallel": self.parallel,
+            return {"service": "douyin-downloader-jw", "parallel": self.parallel,
                     "clearing": self.clearing, "clear_error": self.clear_error,
                     "default_output_dir": str(Path.home() / "Downloads/抖音下载"),
                     "task_actions": ["pause", "retry", "resume", "requeue"],
@@ -521,7 +521,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/":
             return self.respond(200, (ROOT / "dashboard/index.html").read_bytes(), "text/html; charset=utf-8")
         if self.path == "/api/health":
-            return self.respond(200, {"service": "douyin-downloader"})
+            return self.respond(200, {"service": "douyin-downloader-jw"})
         if self.path == "/api/status":
             return self.respond(200, self.server.store.snapshot())
         if self.path.startswith("/api/batch/"):
@@ -576,7 +576,7 @@ def main():
     server = ThreadingHTTPServer(ADDRESS, Handler)
     server.store = TaskStore()
     threading.Thread(target=server.store.loop, daemon=True).start()
-    print("douyin-downloader: http://127.0.0.1:9180", flush=True)
+    print("douyin-downloader-jw: http://127.0.0.1:9180", flush=True)
     try:
         server.serve_forever()
     finally:

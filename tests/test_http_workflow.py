@@ -59,7 +59,7 @@ class HttpWorkflowTests(unittest.TestCase):
                 store = module.TaskStore(state, parse_interval=0)
                 dashboard.store = store
                 try:
-                    self.assertEqual(request('/api/health')['service'], 'douyin-downloader')
+                    self.assertEqual(request('/api/health')['service'], 'douyin-downloader-jw')
                     with self.assertRaises(urllib.error.HTTPError) as forbidden:
                         request('/api/status', host='foreign.example')
                     self.assertEqual(forbidden.exception.code, 403)
