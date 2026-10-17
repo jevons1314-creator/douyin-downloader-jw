@@ -68,7 +68,7 @@ class PauseResumeTests(unittest.TestCase):
                         self.wfile.write(payload[offset:min(offset + 32768, end + 1)])
                         self.wfile.flush()
                         time.sleep(.05 if engine else .025)
-                except (BrokenPipeError, ConnectionResetError):
+                except ConnectionError:
                     pass
         server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), Handler)
         threading.Thread(target=server.serve_forever, daemon=True).start()

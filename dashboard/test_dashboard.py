@@ -395,7 +395,7 @@ class QueueTests(unittest.TestCase):
     def test_external_progress_occupies_a_global_slot(self):
         with tempfile.TemporaryDirectory() as folder:
             log = Path(folder) / 'legacy.log'
-            log.write_text('[#a 1MiB/10MiB(10%) CN:4 DL:20KiB ETA:10s]\nFILE: /Downloads/001_甲_111.mp4.part\n')
+            log.write_text('[#a 1MiB/10MiB(10%) CN:4 DL:20KiB ETA:10s]\nFILE: /Downloads/001_甲_111.mp4.part\n', encoding='utf-8')
             store = module.TaskStore(Path(folder) / 'state')
             store.tasks.append({'id': 'legacy', 'video_id': '111', 'status': 'downloading',
                                 'external_log': str(log), 'file_path': str(Path(folder) / 'old.mp4')})
