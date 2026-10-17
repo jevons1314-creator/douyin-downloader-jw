@@ -1,0 +1,4 @@
+interface:
+  display_name: "抖音下载器"
+  short_description: "复用已验证的解析流程，独立下载、命名并验证抖音视频"
+  default_prompt: "使用 $douyin-downloader 下载指定抖音作品，在本机任务中心查看进度并管理批量队列。"

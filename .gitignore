@@ -1,0 +1,11 @@
+state/
+.venv/
+.qa-agent-deps/
+__pycache__/
+*.py[cod]
+*.mp4
+*.part
+*.aria2
+*.log
+.DS_Store
+.env
