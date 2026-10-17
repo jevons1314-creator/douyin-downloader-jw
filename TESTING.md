@@ -10,7 +10,7 @@
 | --- | --- | --- |
 | macos-latest | Python 3.10、3.14 | 每个版本 61 项通过，包含真实 aria2 暂停与续传 |
 | windows-latest | Python 3.10、3.14 | 每个版本 60 项通过；1 项 aria2 测试按平台设计跳过，标准库传输另行实测通过 |
-| macos-latest、windows-latest | Codex CLI 与 DeepSeek 官方 Skill provider | 两个系统均发现、启用并加载 `douyin-downloader`，相对脚本可读 |
+| macos-latest、windows-latest | Codex CLI 与 DeepSeek 官方 Skill provider | 两个系统均通过 Codex 发现与启用，以及 DeepSeek 发现与加载、相对脚本检查 |
 
 首轮 CI 发现测试夹具写中文日志时遗漏 UTF-8 编码，已修复并由上述运行验证。暂停时本地媒体夹具的预期连接中止也已兼容 Windows。
 
