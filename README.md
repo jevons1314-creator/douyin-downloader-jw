@@ -73,6 +73,6 @@ npm install --prefix .qa-agent-deps --ignore-scripts --no-audit --no-fund @opena
 node tests/check_agent_discovery.mjs .qa-agent-deps/node_modules
 ```
 
-GitHub Actions 会在 Windows/macOS 上运行 Python 测试和 agent 发现检查。本次实际执行结果与未验证项见 [TESTING.md](TESTING.md)；提交 CI 文件并不等于已经在 Windows 实机通过。
+GitHub Actions 已在 Windows/macOS 执行 Python 回归和 agent 发现检查，六个任务均通过。具体结果与未验证项见 [TESTING.md](TESTING.md)；自动化结果不代替 Windows 桌面可见操作或 DeepSeek 完整界面的验收。
 
 发布包排除了 `state/`、媒体、日志、断点、`.venv/`、开发依赖和缓存；`.gitignore` 继续保护本机运行数据。当前仓库未附 LICENSE。

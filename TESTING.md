@@ -2,6 +2,18 @@
 
 验证日期：2026-10-17（北京时间）。这是源码发布包的验证记录，不包含用户任务记录、媒体、日志或账户凭据。
 
+## GitHub Actions
+
+[验证运行 38995131089](https://github.com/jevons1314-creator/douyin-downloader/actions/runs/38995131089)：提交 `532ac87`，六个任务均为 success。
+
+| 执行器 | Python / 检查 | 结果 |
+| --- | --- | --- |
+| macos-latest | Python 3.10、3.14 | 每个版本 61 项通过，包含真实 aria2 暂停与续传 |
+| windows-latest | Python 3.10、3.14 | 每个版本 60 项通过；1 项 aria2 测试按平台设计跳过，标准库传输另行实测通过 |
+| macos-latest、windows-latest | Codex CLI 与 DeepSeek 官方 Skill provider | 两个系统均发现、启用并加载 `douyin-downloader`，相对脚本可读 |
+
+首轮 CI 发现测试夹具写中文日志时遗漏 UTF-8 编码，已修复并由上述运行验证。暂停时本地媒体夹具的预期连接中止也已兼容 Windows。
+
 ## 已实际执行
 
 | 项目 | 环境与结果 |
@@ -37,8 +49,8 @@
 
 ## 验证边界
 
-- 当前没有 Windows 实机或 Windows 执行器；Windows 编码、命令和进程分支在本机模拟测试通过，Windows 原生结果仍为 **未验证**。
-- 已加入 GitHub Actions：Windows/macOS 的 Python 3.10、3.14 回归，以及两个系统上的 Codex 和 DeepSeek 官方 Skill 发现检查。上传后以实际 CI 结果为准。
+- Windows 原生自动化已在 GitHub Windows 执行器通过；未在用户的 Windows 桌面进行人工验收。
+- GitHub Actions 覆盖 Windows/macOS 的 Python 3.10、3.14 回归及两个 agent 的 Skill 发现。真实 RCuts 网络和下载媒体服务没有在 CI 中调用，以免把外部服务波动混入字节与队列回归。
 - DeepSeek 使用官方 Skill 加载组件做真实集成检查；未启动其完整桌面界面、未登录账户、未向模型发出任务。共享 Python 入口和下载队列已独立实测。
 - 传输夹具只验证字节完整性；上表实际媒体样本已另行完整解码。该结果不能证明第三方服务今后返回的每个视频都可用。
 - 本地网页的状态与“打开本地”路径提示已观察；Windows 资源管理器的可见交互仍需 Windows 实机验收。
