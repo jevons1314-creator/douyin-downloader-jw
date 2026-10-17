@@ -4,7 +4,7 @@
 
 ## GitHub Actions
 
-[验证运行 38995131089](https://github.com/jevons1314-creator/douyin-downloader-jw/actions/runs/38995131089)：提交 `532ac87`，六个任务均为 success。
+[验证运行 38997015785](https://github.com/jevons1314-creator/douyin-downloader-jw/actions/runs/38997015785)：提交 `1be7fa5`，六个任务均为 success。
 
 | 执行器 | Python / 检查 | 结果 |
 | --- | --- | --- |
@@ -13,6 +13,13 @@
 | macos-latest、windows-latest | Codex CLI 与 DeepSeek 官方 Skill provider | 两个系统均通过 Codex 发现与启用，以及 DeepSeek 发现与加载、相对脚本检查 |
 
 首轮 CI 发现测试夹具写中文日志时遗漏 UTF-8 编码，已修复并由上述运行验证。暂停时本地媒体夹具的预期连接中止也已兼容 Windows。
+
+## JW 名称与发现核对
+
+- 改名前在 GitHub 搜索 `douyin-downloader-jw in:name`，未发现公开同名仓库；本机无该 Skill 标识。
+- 本机 Harness 专用入口指向已验证的同一份源码；`douyin-downloader-jw` 与另一款 `douyin-downloader` 使用不同标识。
+- 自动化消费者检查同时放入旧名夹具，确认两个 agent 仍能独立找到 JW 版并解析其脚本路径。
+- Harness 桌面内的实际操作由用户继续测试，本次不计为人工验收通过。
 
 ## 已实际执行
 

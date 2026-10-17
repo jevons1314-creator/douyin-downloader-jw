@@ -61,6 +61,8 @@ py -3 scripts/download_douyin.py --share-text '粘贴一条或多条抖音分享
 
 ## 验证与 GitHub
 
+发布或改名前，先检索拟用的公开仓库名和已安装 Skill 的 `name`，再验证共存时加载到的实际路径；目录名不同不能消除相同 `name` 的冲突。
+
 标准库测试（Windows 将 `python3` 改为 `py -3`）：
 
 ```sh
